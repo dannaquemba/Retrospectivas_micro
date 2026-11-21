@@ -1,0 +1,94 @@
+### ==========================================
+### PRUEBAS MICROSERVICIO SPRINTS (Puerto 8081)
+### ==========================================
+
+### Obtener todos los sprints
+GET http://127.0.0.1:8081/sprints
+
+### Obtener un sprint por ID
+GET http://127.0.0.1:8081/sprints/1
+
+### Crear un nuevo sprint
+POST http://127.0.0.1:8081/sprints
+Content-Type: application/json
+
+{
+    "nombre": "Sprint 1",
+    "fecha_inicio": "2026-10-01",
+    "fecha_fin": "2026-10-14"
+}
+
+### Crear sprint inválido (fecha_fin anterior a fecha_inicio -> 400)
+POST http://127.0.0.1:8081/sprints
+Content-Type: application/json
+
+{
+    "nombre": "Sprint Inválido",
+    "fecha_inicio": "2026-10-20",
+    "fecha_fin": "2026-10-10"
+}
+
+### Actualizar un sprint
+PUT http://127.0.0.1:8081/sprints/1
+Content-Type: application/json
+
+{
+    "nombre": "Sprint 1 - Actualizado",
+    "fecha_inicio": "2026-10-01",
+    "fecha_fin": "2026-10-15"
+}
+
+### Eliminar un sprint
+DELETE http://127.0.0.1:8081/sprints/1
+
+
+### ==========================================
+### PRUEBAS MICROSERVICIO ÍTEMS (Puerto 8082)
+### ==========================================
+
+### Obtener ítems de un sprint
+GET http://127.0.0.1:8082/sprints/1/items
+
+### Crear un logro
+POST http://127.0.0.1:8082/items
+Content-Type: application/json
+
+{
+    "sprint_id": 1,
+    "categoria": "logro",
+    "descripcion": "Se completaron todas las historias de usuario a tiempo."
+}
+
+### Crear un impedimento
+POST http://127.0.0.1:8082/items
+Content-Type: application/json
+
+{
+    "sprint_id": 1,
+    "categoria": "impedimento",
+    "descripcion": "Faltó ambiente de pruebas durante dos días."
+}
+
+### Crear una acción
+POST http://127.0.0.1:8082/items
+Content-Type: application/json
+
+{
+    "sprint_id": 1,
+    "categoria": "accion",
+    "descripcion": "Automatizar el despliegue en el entorno de pruebas."
+}
+
+### Marcar una acción como cumplida
+PUT http://127.0.0.1:8082/items/3/cumplimiento
+Content-Type: application/json
+
+{
+    "cumplida": true
+}
+
+### Obtener resumen de ítems por sprint
+GET http://127.0.0.1:8082/items/resumen
+
+### Eliminar un ítem
+DELETE http://127.0.0.1:8082/items/2

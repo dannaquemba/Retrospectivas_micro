@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle de Retrospectiva</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <div class="contenedor-principal">
+      <!-- Barra lateral -->
+      <aside class="barra-lateral">
+        <div>
+          <div class="marca">
+            <div class="logo-circulo">
+              <svg
+                viewBox="0 0 80 80"
+                width="56"
+                height="56"
+                aria-hidden="true"
+              >
+                <g
+                  class="ciclo-giratorio"
+                  fill="none"
+                  stroke="#dfc9f9"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                >
+                  <path d="M40 12 A28 28 0 0 1 68 40" />
+                  <path d="M68 40 l-5 -7 m5 7 l7 -4" />
+                  <path d="M40 68 A28 28 0 0 1 12 40" />
+                  <path d="M12 40 l5 7 m-5 -7 l-7 4" />
+                </g>
+                <g class="equipo-latido">
+                  <circle cx="40" cy="33" r="6" fill="#f6c358" />
+                  <circle cx="29" cy="48" r="5" fill="#ffffff" />
+                  <circle cx="51" cy="48" r="5" fill="#ffffff" />
+                </g>
+              </svg>
+            </div>
+            <h1>Registro de <span>Retrospectivas Ágiles</span></h1>
+          </div>
+
+          <nav class="menu-navegacion">
+            <ul>
+              <li><a href="index.html">🏠 Inicio</a></li>
+              <li>
+                <a href="index.html#mis-retrospectivas"
+                  >📋 Mis Retrospectivas</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <p class="lema-lateral">Reflexiona, mejora, evoluciona</p>
+      </aside>
+
+      <!-- Contenido principal -->
+      <main class="contenido-principal">
+        <header class="encabezado-detalle">
+          <a href="index.html#mis-retrospectivas" class="enlace-volver"
+            >← Volver al listado</a
+          >
+          <h2 id="detalle-nombre-sprint">Cargando sprint...</h2>
+          <p id="detalle-fechas-sprint"></p>
+        </header>
+
+        <!-- Mensajes de éxito o error -->
+        <div
+          id="mensaje-estado"
+          class="mensaje-estado oculto"
+          role="alert"
+        ></div>
+
+        <!-- Revisión del sprint anterior (si existe) -->
+        <section id="seccion-sprint-anterior" class="seccion-anterior oculto">
+          <h3>
+            Revisión de acciones del sprint anterior:
+            <span id="nombre-sprint-anterior"></span>
+          </h3>
+          <p class="subtexto-anterior">
+            Marca si el equipo cumplió los compromisos adquiridos en la
+            retrospectiva anterior.
+          </p>
+          <ul id="lista-acciones-anteriores" class="lista-items"></ul>
+        </section>
+
+        <!-- Formulario para agregar un ítem al sprint actual -->
+        <section class="seccion-formulario">
+          <h3>Agregar ítem a esta retrospectiva</h3>
+          <form id="form-item">
+            <div class="formulario-grid">
+              <div class="campo-formulario">
+                <label for="item-categoria">Categoría:</label>
+                <select id="item-categoria" required>
+                  <option value="logro">Logro (lo que funcionó)</option>
+                  <option value="impedimento">Impedimento (qué mejorar)</option>
+                  <option value="accion">
+                    Acción (compromiso para el siguiente sprint)
+                  </option>
+                </select>
+              </div>
+
+              <div class="campo-formulario">
+                <label for="item-fecha-revision"
+                  >Fecha de revisión (opcional):</label
+                >
+                <input type="date" id="item-fecha-revision" />
+              </div>
+
+              <div class="campo-formulario campo-ancho">
+                <label for="item-descripcion">Descripción:</label>
+                <textarea
+                  id="item-descripcion"
+                  rows="3"
+                  placeholder="Escribe el detalle..."
+                  required
+                ></textarea>
+              </div>
+
+              <div class="botones-formulario">
+                <button type="submit" class="btn-primario">Agregar ítem</button>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <!-- Columnas de Logros, Impedimentos y Acciones -->
+        <section class="tablero-retrospectiva">
+          <div class="columna-items col-logros">
+            <h3>Logros (¿Qué funcionó?)</h3>
+            <ul id="lista-logros" class="lista-items"></ul>
+          </div>
+
+          <div class="columna-items col-impedimentos">
+            <h3>Impedimentos (¿Qué mejorar?)</h3>
+            <ul id="lista-impedimentos" class="lista-items"></ul>
+          </div>
+
+          <div class="columna-items col-acciones">
+            <h3>Acciones (Compromisos)</h3>
+            <ul id="lista-acciones" class="lista-items"></ul>
+          </div>
+        </section>
+
+        <footer class="pie-pagina">
+          <span class="pildora-footer"
+            >La retrospectiva nos ayuda a crecer juntos</span
+          >
+        </footer>
+      </main>
+    </div>
+
+    <script src="js/services/sprints_services.js"></script>
+    <script src="js/services/items_services.js"></script>
+    <script src="js/components/retrospectivas_components.js"></script>
+    <script src="js/detalle.js"></script>
+  </body>
+</html>

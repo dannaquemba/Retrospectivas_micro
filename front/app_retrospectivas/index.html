@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Retrospectivas Ágiles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <div class="contenedor-principal">
+      <!-- Barra lateral de navegación -->
+      <aside class="barra-lateral">
+        <div>
+          <div class="marca">
+            <div class="logo-circulo">
+              <svg
+                viewBox="0 0 80 80"
+                width="56"
+                height="56"
+                aria-hidden="true"
+              >
+                <g
+                  class="ciclo-giratorio"
+                  fill="none"
+                  stroke="#dfc9f9"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                >
+                  <path d="M40 12 A28 28 0 0 1 68 40" />
+                  <path d="M68 40 l-5 -7 m5 7 l7 -4" />
+                  <path d="M40 68 A28 28 0 0 1 12 40" />
+                  <path d="M12 40 l5 7 m-5 -7 l-7 4" />
+                </g>
+                <g class="equipo-latido">
+                  <circle cx="40" cy="33" r="6" fill="#f6c358" />
+                  <circle cx="29" cy="48" r="5" fill="#ffffff" />
+                  <circle cx="51" cy="48" r="5" fill="#ffffff" />
+                </g>
+              </svg>
+            </div>
+            <h1>Registro de <span>Retrospectivas Ágiles</span></h1>
+          </div>
+
+          <nav class="menu-navegacion">
+            <ul>
+              <li><a href="#" id="nav-inicio" class="activo">🏠 Inicio</a></li>
+              <li>
+                <a href="#mis-retrospectivas" id="nav-retrospectivas"
+                  >📋 Mis Retrospectivas</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <p class="lema-lateral">Reflexiona, mejora, evoluciona</p>
+      </aside>
+
+      <!-- Contenido principal -->
+      <main class="contenido-principal">
+        <div class="barra-superior">
+          <span class="etiqueta-sesion">Sin inicio de sesión</span>
+        </div>
+
+        <!-- Bienvenida (el JS la oculta en la vista "Mis Retrospectivas") -->
+        <header id="encabezado-hero" class="encabezado-bienvenida">
+          <div class="texto-bienvenida">
+            <h2>¡Hola, equipo!</h2>
+            <p>Registra y da seguimiento a tus retrospectivas de Scrum.</p>
+            <span class="pildora-subtitulo"
+              >Mejores equipos, mejores proyectos</span
+            >
+          </div>
+
+          <svg viewBox="0 0 300 170" aria-hidden="true">
+            <circle cx="150" cy="90" r="72" fill="#e5d4fa" />
+            <rect
+              x="40"
+              y="38"
+              width="190"
+              height="104"
+              rx="12"
+              fill="#ffffff"
+              stroke="#5e389f"
+              stroke-width="3"
+            />
+            <g class="nota-flotante-1">
+              <rect
+                x="54"
+                y="52"
+                width="48"
+                height="38"
+                rx="5"
+                fill="#fde8be"
+              />
+              <path
+                d="M62 64h30M62 74h20"
+                stroke="#5e389f"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+            </g>
+            <g class="nota-flotante-2">
+              <rect
+                x="114"
+                y="60"
+                width="48"
+                height="38"
+                rx="5"
+                fill="#bfe8cf"
+              />
+              <path
+                d="M122 72h30M122 82h18"
+                stroke="#216e3f"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+            </g>
+            <rect x="174" y="52" width="44" height="38" rx="5" fill="#fcd5da" />
+            <path
+              d="M182 64h28M182 74h16"
+              stroke="#a62b38"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M58 112h156M58 126h110"
+              stroke="#dcccf2"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+            <g class="bombillo-animado">
+              <circle cx="268" cy="46" r="15" fill="#f6c358" />
+              <rect
+                x="261"
+                y="60"
+                width="14"
+                height="8"
+                rx="2"
+                fill="#5e389f"
+              />
+            </g>
+            <path
+              class="estrella-brillo"
+              d="M274 98l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"
+              fill="#f6c358"
+            />
+            <path
+              class="estrella-brillo-2"
+              d="M254 115l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"
+              fill="#a64fe0"
+            />
+          </svg>
+        </header>
+
+        <!-- Mensajes de éxito o error -->
+        <div
+          id="mensaje-estado"
+          class="mensaje-estado oculto"
+          role="alert"
+        ></div>
+
+        <!-- Tarjetas de resumen y botón de creación -->
+        <section id="panel-resumen" class="panel-resumen">
+          <div class="tarjeta-resumen tarjeta-lila">
+            <div class="icono-tarjeta icono-lila">📅</div>
+            <div>
+              <span id="total-sprints" class="numero-resumen">0</span>
+              <span class="texto-resumen">Total de Sprints</span>
+            </div>
+          </div>
+
+          <div class="tarjeta-resumen tarjeta-crema">
+            <div>
+              <span id="porcentaje-cumplimiento" class="numero-resumen"
+                >0%</span
+              >
+              <span class="texto-resumen">Cumplimiento de acciones</span>
+            </div>
+            <div class="icono-tarjeta icono-crema">✓</div>
+          </div>
+
+          <div class="accion-principal">
+            <button
+              id="btn-abrir-formulario"
+              type="button"
+              class="btn-crear-retro"
+            >
+              <span class="mas">+</span> Crear nueva Retrospectiva
+            </button>
+          </div>
+        </section>
+
+        <!-- Formulario para crear o editar un sprint -->
+        <section id="seccion-formulario" class="seccion-formulario oculto">
+          <h3 id="titulo-formulario">Nueva Retrospectiva</h3>
+          <form id="form-sprint">
+            <input type="hidden" id="sprint-id" />
+
+            <div class="formulario-grid">
+              <div class="campo-formulario">
+                <label for="sprint-nombre">Nombre del Sprint:</label>
+                <input
+                  type="text"
+                  id="sprint-nombre"
+                  placeholder="Ej: Sprint 5"
+                  required
+                />
+              </div>
+
+              <div class="campo-formulario">
+                <label for="sprint-fecha-inicio">Fecha de inicio:</label>
+                <input type="date" id="sprint-fecha-inicio" required />
+              </div>
+
+              <div class="campo-formulario">
+                <label for="sprint-fecha-fin">Fecha de fin:</label>
+                <input type="date" id="sprint-fecha-fin" required />
+              </div>
+
+              <div class="botones-formulario">
+                <button
+                  type="submit"
+                  id="btn-guardar-sprint"
+                  class="btn-primario"
+                >
+                  Guardar
+                </button>
+                <button
+                  type="button"
+                  id="btn-cancelar-formulario"
+                  class="btn-secundario"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <!-- Tabla de retrospectivas -->
+        <section id="seccion-retrospectivas" class="seccion-tabla">
+          <div class="cabecera-tabla">
+            <div>
+              <h3>Mis Retrospectivas</h3>
+              <p id="subtitulo-tabla" class="subtitulo-tabla oculto">
+                Consulta, edita y revisa todos tus sprints
+              </p>
+            </div>
+            <div class="controles-tabla">
+              <label class="caja-busqueda">
+                <span>🔍</span>
+                <input
+                  type="search"
+                  id="buscador-sprint"
+                  placeholder="Buscar por sprint..."
+                />
+              </label>
+              <button
+                id="btn-crear-tabla"
+                type="button"
+                class="btn-primario oculto"
+              >
+                + Nueva
+              </button>
+            </div>
+          </div>
+
+          <div class="tabla-responsiva">
+            <table id="tabla-sprints" class="tabla-datos">
+              <thead>
+                <tr>
+                  <th>Sprint</th>
+                  <th>Fechas</th>
+                  <th>Logros</th>
+                  <th>Impedimentos</th>
+                  <th>Acciones</th>
+                  <th>Estado</th>
+                  <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody id="cuerpo-tabla-sprints">
+                <!-- Filas generadas dinámicamente por JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <p id="texto-sin-sprints" class="texto-vacio oculto">
+            Aún no hay retrospectivas registradas. Crea la primera para
+            comenzar.
+          </p>
+        </section>
+
+        <footer class="pie-pagina">
+          <span class="pildora-footer"
+            >La retrospectiva nos ayuda a crecer juntos</span
+          >
+        </footer>
+      </main>
+    </div>
+
+    <script src="js/services/sprints_services.js"></script>
+    <script src="js/services/items_services.js"></script>
+    <script src="js/components/retrospectivas_components.js"></script>
+    <script src="js/retrospectivas.js"></script>
+  </body>
+</html>

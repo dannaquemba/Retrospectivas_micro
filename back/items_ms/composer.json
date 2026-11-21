@@ -1,0 +1,16 @@
+{
+  "name": "retro/items-ms",
+  "description": "Microservicio para la gestión de ítems y resúmenes de retrospectivas",
+  "type": "project",
+  "version": "1.0.0",
+  "require": {
+    "slim/slim": "4.*",
+    "slim/psr7": "^1.8",
+    "illuminate/database": "^9.52"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
+}
